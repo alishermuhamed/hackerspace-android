@@ -5,7 +5,10 @@
     "jest": true
   },
   "rules": {
-    "react/jsx-filename-extension": "off"
+    "react/prefer-stateless-function": "off",
+    "react/jsx-filename-extension": "off",
+    "react/destructuring-assignment": "off",
+    "linebreak-style": "off"
   },
   "globals": {
     "fetch": false
