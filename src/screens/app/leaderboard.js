@@ -1,11 +1,19 @@
 import React from 'react';
-import { Text, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
+import Header from '../../components/header';
+
+const styles = StyleSheet.create({
+  view: {
+    flex: 1,
+    alignItems: 'stretch',
+  },
+});
 
 export default class Leaderboard extends React.Component {
   render() {
     return (
-      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-        <Text>Leaderboard Screen</Text>
+      <View style={styles.view}>
+        <Header title="Leaderboard" />
       </View>
     );
   }

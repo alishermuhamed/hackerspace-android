@@ -1,11 +1,19 @@
 import React from 'react';
-import { Text, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
+import Header from '../../components/header';
+
+const styles = StyleSheet.create({
+  view: {
+    flex: 1,
+    alignItems: 'stretch',
+  },
+});
 
 export default class Shop extends React.Component {
   render() {
     return (
-      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-        <Text>Shop Screen</Text>
+      <View style={styles.view}>
+        <Header title="Shop" />
       </View>
     );
   }
