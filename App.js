@@ -1,19 +1,33 @@
-import React from 'react';
-import { Text, View } from 'react-native';
-import { createStackNavigator, createAppContainer } from 'react-navigation';
+import {
+  createDrawerNavigator, createStackNavigator, createSwitchNavigator, createAppContainer,
+} from 'react-navigation';
+import {
+  Profile, Leaderboard, Hackathons, Shop,
+} from './src/screens/app';
+import {
+  SignIn, SignUp, ForgotPassword, AuthLoading,
+} from './src/screens/auth';
 
-function HomeScreen() {
-  return (
-    <View>
-      <Text>Welcome to React Native</Text>
-    </View>
-  );
-}
-
-const AppNavigator = createStackNavigator({
-  Home: {
-    screen: HomeScreen,
-  },
+const AppNavigator = createDrawerNavigator({
+  Profile,
+  Leaderboard,
+  Hackathons,
+  Shop,
 });
 
-export default createAppContainer(AppNavigator);
+const AuthNavigator = createStackNavigator({
+  SignIn,
+  SignUp,
+  ForgotPassword,
+});
+
+export default createAppContainer(createSwitchNavigator(
+  {
+    AuthLoading,
+    Auth: AuthNavigator,
+    App: AppNavigator,
+  },
+  {
+    initialRouteName: 'AuthLoading',
+  },
+));
