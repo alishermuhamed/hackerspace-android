@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
-import Header from '../../components/header';
+import Toolbar from '../../components/toolbar';
 
 const styles = StyleSheet.create({
   view: {
@@ -13,7 +13,7 @@ export default class Profile extends React.Component {
   render() {
     return (
       <View style={styles.view}>
-        <Header title="Profile" />
+        <Toolbar title="Profile" />
       </View>
     );
   }

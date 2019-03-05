@@ -1,6 +1,7 @@
 import React from 'react';
+import { StyleSheet } from 'react-native';
 import { shape, func, string } from 'prop-types';
-import { StyleSheet, ToolbarAndroid } from 'react-native';
+import Icon from 'react-native-vector-icons/FontAwesome';
 import { withNavigation } from 'react-navigation';
 
 const styles = StyleSheet.create({
@@ -10,7 +11,7 @@ const styles = StyleSheet.create({
   },
 });
 
-class Header extends React.Component {
+class Toolbar extends React.Component {
   static propTypes = {
     navigation: shape({
       openDrawer: func.isRequired,
@@ -22,15 +23,15 @@ class Header extends React.Component {
     const { navigation, title } = this.props;
     const { openDrawer } = navigation;
     return (
-      <ToolbarAndroid
+      <Icon.ToolbarAndroid
         style={styles.toolbar}
         title={title}
         titleColor="#FFFFFF"
-        navIcon={require('../icons/menu.png')}
+        navIconName="bars"
         onIconClicked={openDrawer}
       />
     );
   }
 }
 
-export default withNavigation(Header);
+export default withNavigation(Toolbar);
