@@ -6,7 +6,7 @@ import {
   createSwitchNavigator,
 } from 'react-navigation';
 import { Dimensions } from 'react-native';
-import Drawer from './src/components/drawer';
+import { DrawerWithNavigation as Drawer, drawerOptions } from './src/components/drawer';
 import {
   Profile, Leaderboard, Hackathons, Shop,
 } from './src/screens/app';
@@ -25,17 +25,7 @@ const AppDrawerStack = createDrawerNavigator(
     contentComponent: props => (
       <Drawer {...props} />
     ),
-    contentOptions: {
-      activeTintColor: '#FFFFFF',
-      activeBackgroundColor: '#3F87F5',
-      inactiveTintColor: '#FFFFFF',
-      itemsContainerStyle: {
-        alignItems: 'center',
-      },
-      labelStyle: {
-        fontSize: 20,
-      },
-    },
+    contentOptions: drawerOptions,
   },
 );
 

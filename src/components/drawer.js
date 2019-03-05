@@ -1,8 +1,11 @@
 import React from 'react';
-import {
-  StyleSheet, View, TouchableNativeFeedback, Image,
-} from 'react-native';
 import { shape, func } from 'prop-types';
+import {
+  StyleSheet,
+  View,
+  TouchableNativeFeedback,
+  Image,
+} from 'react-native';
 import { DrawerItems, withNavigation } from 'react-navigation';
 
 const styles = StyleSheet.create({
@@ -22,8 +25,13 @@ class Drawer extends React.Component {
   render() {
     return (
       <View style={styles.view}>
-        <TouchableNativeFeedback onPress={this.props.navigation.closeDrawer}>
-          <Image source={require('../icons/close.png')} />
+        <TouchableNativeFeedback
+          onPress={this.props.navigation.closeDrawer}
+        >
+          <Image
+            source={require('../icons/close.png')}
+            style={{ marginTop: 15, marginLeft: 15 }}
+          />
         </TouchableNativeFeedback>
         <DrawerItems {...this.props} />
       </View>
@@ -31,4 +39,15 @@ class Drawer extends React.Component {
   }
 }
 
-export default withNavigation(Drawer);
+export const DrawerWithNavigation = withNavigation(Drawer);
+export const drawerOptions = {
+  activeTintColor: '#FFFFFF',
+  activeBackgroundColor: '#3F87F5',
+  inactiveTintColor: '#FFFFFF',
+  itemsContainerStyle: {
+    alignItems: 'center',
+  },
+  labelStyle: {
+    fontSize: 20,
+  },
+};
