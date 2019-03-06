@@ -10,7 +10,8 @@
     "react/destructuring-assignment": "off",
     "linebreak-style": "off",
     "no-alert": "off",
-    "global-require": "off"
+    "global-require": "off",
+    "no-plusplus": "off"
   },
   "globals": {
     "fetch": false,
