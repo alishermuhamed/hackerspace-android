@@ -4,14 +4,18 @@ import {
   StyleSheet,
   View,
   TouchableNativeFeedback,
-  Image,
 } from 'react-native';
+import Icon from 'react-native-vector-icons/FontAwesome';
 import { DrawerItems, withNavigation } from 'react-navigation';
 
 const styles = StyleSheet.create({
   view: {
     flex: 1,
     backgroundColor: '#3F87F5',
+  },
+  closeButton: {
+    marginTop: 20,
+    marginLeft: 20,
   },
 });
 
@@ -25,13 +29,8 @@ class Drawer extends React.Component {
   render() {
     return (
       <View style={styles.view}>
-        <TouchableNativeFeedback
-          onPress={this.props.navigation.closeDrawer}
-        >
-          <Image
-            source={require('../icons/close.png')}
-            style={{ marginTop: 15, marginLeft: 15 }}
-          />
+        <TouchableNativeFeedback onPress={this.props.navigation.closeDrawer}>
+          <Icon name="times" size={30} color="#FFFFFF" style={styles.closeButton} />
         </TouchableNativeFeedback>
         <DrawerItems {...this.props} />
       </View>
