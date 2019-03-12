@@ -2,8 +2,10 @@ import React from 'react';
 import { shape, func } from 'prop-types';
 import {
   StyleSheet,
+  AsyncStorage,
   View,
   TouchableNativeFeedback,
+  Text,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { DrawerItems, withNavigation } from 'react-navigation';
@@ -17,6 +19,13 @@ const styles = StyleSheet.create({
     marginTop: 20,
     marginLeft: 20,
   },
+  logout: {
+    marginTop: 300,
+    alignSelf: 'center',
+    fontSize: 20,
+    color: '#FFFFFF',
+    fontWeight: 'bold',
+  },
 });
 
 class Drawer extends React.Component {
@@ -26,6 +35,11 @@ class Drawer extends React.Component {
     }).isRequired,
   };
 
+  logout = async () => {
+    await AsyncStorage.removeItem('token');
+    this.props.navigation.navigate('Auth');
+  };
+
   render() {
     return (
       <View style={styles.view}>
@@ -33,6 +47,7 @@ class Drawer extends React.Component {
           <Icon name="times" size={30} color="#FFFFFF" style={styles.closeButton} />
         </TouchableNativeFeedback>
         <DrawerItems {...this.props} />
+        <Text onPress={this.logout} style={styles.logout}>Logout</Text>
       </View>
     );
   }
