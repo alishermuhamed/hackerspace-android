@@ -8,13 +8,15 @@
     "react/prefer-stateless-function": "off",
     "react/jsx-filename-extension": "off",
     "react/destructuring-assignment": "off",
+    "react/require-default-props": "off",
     "linebreak-style": "off",
     "no-alert": "off",
     "global-require": "off",
-    "no-plusplus": "off"
+    "no-plusplus": "off",
+    "consistent-return": "off"
   },
   "globals": {
     "fetch": false,
-    "alert": false,
+    "alert": false
   }
 }
