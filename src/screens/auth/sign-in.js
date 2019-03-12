@@ -9,6 +9,7 @@ import {
   TextInput,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import { login } from '../../server';
 
 const styles = StyleSheet.create({
   view: {
@@ -66,12 +67,14 @@ export default class SignIn extends React.Component {
     pwd: '',
   };
 
-  loginWithTelegram = () => {
-    this.props.navigation.navigate('App');
-  };
-
-  login = () => {
-    this.props.navigation.navigate('App');
+  handleLogin = async () => {
+    const { email, pwd } = this.state;
+    try {
+      await login(email, pwd);
+      this.props.navigation.navigate('App');
+    } catch (error) {
+      alert(error);
+    }
   };
 
   render() {
@@ -80,7 +83,7 @@ export default class SignIn extends React.Component {
     return (
       <KeyboardAvoidingView style={styles.view}>
         <Icon name="user" size={100} color="#3F87F5" />
-        <TouchableNativeFeedback onPress={this.loginWithTelegram}>
+        <TouchableNativeFeedback onPress={() => alert('Log in with Telegram')}>
           <View style={styles.telegramButton}>
             <Text style={styles.buttonText}>Log in with Telegram</Text>
           </View>
@@ -103,7 +106,7 @@ export default class SignIn extends React.Component {
         <TouchableNativeFeedback onPress={() => navigation.navigate('ForgotPassword')}>
           <Text style={styles.forgotPassword}>Forgot password?</Text>
         </TouchableNativeFeedback>
-        <TouchableNativeFeedback onPress={this.login}>
+        <TouchableNativeFeedback onPress={this.handleLogin}>
           <View style={styles.loginButton}>
             <Text style={styles.buttonText}>Log in</Text>
           </View>
