@@ -9,4 +9,12 @@ async function getEventsByStatus(status) {
   }
 }
 
-export default { getEventsByStatus };
+async function apply(id) {
+  try {
+    await request(`events/${id}/apply`, 'POST', true);
+  } catch (error) {
+    alert(error);
+  }
+}
+
+export default { getEventsByStatus, apply };

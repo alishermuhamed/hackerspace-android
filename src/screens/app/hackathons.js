@@ -70,7 +70,7 @@ export default class Hackathons extends React.Component {
         <ScrollView contentContainerStyle={styles.hackathons}>
           {
             events.map(event => (
-              <HackathonPreview key={event.id} {...event} />
+              <HackathonPreview key={event.id} {...event} getEvents={this.getEvents} />
             ))
           }
         </ScrollView>

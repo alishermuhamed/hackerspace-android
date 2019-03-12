@@ -6,7 +6,8 @@ import {
   Text,
   TouchableNativeFeedback,
 } from 'react-native';
-import { string } from 'prop-types';
+import { func, number, string } from 'prop-types';
+import { events } from '../server';
 
 const styles = StyleSheet.create({
   view: {
@@ -51,6 +52,8 @@ const styles = StyleSheet.create({
 
 export default class HackathonPreview extends React.Component {
   static propTypes = {
+    getEvents: func.isRequired,
+    id: number.isRequired,
     title: string.isRequired,
     city: string,
     dateStart: string.isRequired,
@@ -58,8 +61,17 @@ export default class HackathonPreview extends React.Component {
     status: string.isRequired,
   };
 
-  handleButtonPress = () => {
-    alert('Button pressed');
+  handleButtonPress = async () => {
+    const { getEvents, id, status } = this.props;
+    if (status === 'open') {
+      try {
+        await events.apply(id);
+        alert('You successfully applied to the hackathon');
+        await getEvents();
+      } catch (error) {
+        alert(error);
+      }
+    }
   };
 
   renderButton = () => {
