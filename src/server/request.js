@@ -6,7 +6,7 @@ export default async function (endpoint, method, isSecured, params = {}) {
   if (isSecured) {
     try {
       const token = await AsyncStorage.getItem('token');
-      request.headers.Authorization = `${token}`;
+      request.headers.Authorization = token;
     } catch (error) {
       alert(error);
     }
