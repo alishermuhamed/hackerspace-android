@@ -2,7 +2,7 @@ import request from './request';
 
 async function getEventsByStatus(status) {
   try {
-    const events = await request('events', 'GET', true, { status });
+    const events = await request('events', 'GET', false, { status });
     return events;
   } catch (error) {
     alert(error);
