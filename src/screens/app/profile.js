@@ -7,6 +7,7 @@ import {
   Text,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import { hackers } from '../../server';
 import Toolbar from '../../components/toolbar';
 
 const styles = StyleSheet.create({
@@ -114,38 +115,12 @@ export default class Profile extends React.Component {
     bio: '',
   };
 
-  componentDidMount = () => {
+  componentDidMount = async () => {
     try {
-      this.setState({
-        pic: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRYZrso0k5v46JAtHbC2kl2Vw9E9rMHkq_xdUlYrx8BmVA7RJ40',
-        username: 'John Wick',
-        stat: {
-          hackTotal: 6,
-          hackWin: 4,
-          xp: 300,
-          coins: 617,
-        },
-        skills: [
-          {
-            id: 1,
-            tag: 'Backend Developer',
-            verified: 6,
-          },
-          {
-            id: 2,
-            tag: 'Frontend Developer',
-            verified: 4,
-          },
-          {
-            id: 3,
-            tag: 'Product Manager',
-            verified: 9,
-          },
-        ],
-        bio: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-      });
-    } catch {
-      alert('Error while fetching user data!');
+      const me = await hackers.getMe();
+      this.setState(me);
+    } catch (error) {
+      alert(error);
     }
   };
 

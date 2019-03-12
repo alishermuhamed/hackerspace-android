@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
 export default class HackathonPreview extends React.Component {
   static propTypes = {
     title: string.isRequired,
-    city: string.isRequired,
+    city: string,
     dateStart: string.isRequired,
   };
 

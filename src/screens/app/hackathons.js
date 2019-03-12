@@ -5,6 +5,7 @@ import {
   Picker,
   ScrollView,
 } from 'react-native';
+import { events as hackathons } from '../../server';
 import Toolbar from '../../components/toolbar';
 import HackathonPreview from '../../components/hackathon-preview';
 
@@ -29,40 +30,23 @@ export default class Hackathons extends React.Component {
     events: [],
   };
 
-  changeStatus = status => this.setState({ status });
-
-  componentDidMount = () => {
+  getEvents = async () => {
+    const { status } = this.state;
     try {
-      this.setState({
-        events: [
-          {
-            id: 1,
-            title: 'Hack.Moscow',
-            city: 'Moscow',
-            dateStart: '2019-04-20T15:00:00.000Z',
-          },
-          {
-            id: 2,
-            title: 'Local Hack Day',
-            city: 'Moscow',
-            dateStart: '2018-07-13T15:00:00.000Z',
-          },
-          {
-            id: 3,
-            title: 'HackUps',
-            city: 'Barcelona',
-            dateStart: '2018-02-13T15:00:00.000Z',
-          },
-          {
-            id: 4,
-            title: 'Hackathon 1',
-            city: 'New York',
-            dateStart: '2018-01-24T15:00:00.000Z',
-          },
-        ],
-      });
-    } catch {
-      alert('Error while loading events!');
+      const events = await hackathons.getEventsByStatus(status);
+      this.setState({ events });
+    } catch (error) {
+      alert(error);
+    }
+  };
+
+  changeStatus = status => this.setState(() => ({ status }), this.getEvents);
+
+  componentDidMount = async () => {
+    try {
+      await this.getEvents();
+    } catch (error) {
+      alert(error);
     }
   };
 
