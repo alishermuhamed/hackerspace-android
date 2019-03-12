@@ -1,7 +1,10 @@
 import React from 'react';
 import { shape, func } from 'prop-types';
 import {
-  AsyncStorage, View, ActivityIndicator, StatusBar,
+  AsyncStorage,
+  View,
+  ActivityIndicator,
+  StatusBar,
 } from 'react-native';
 
 export default class AuthLoading extends React.Component {
@@ -12,7 +15,8 @@ export default class AuthLoading extends React.Component {
   };
 
   checkToken = async () => {
-    const token = await AsyncStorage.getItem('token');
+    // const token = await AsyncStorage.getItem('token');
+    const token = null;
     this.props.navigation.navigate(token ? 'App' : 'Auth');
   };
 
@@ -21,7 +25,7 @@ export default class AuthLoading extends React.Component {
   render() {
     return (
       <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-        <ActivityIndicator />
+        <ActivityIndicator size="large" color="#3F87F5" />
         <StatusBar barStyle="default" />
       </View>
     );
