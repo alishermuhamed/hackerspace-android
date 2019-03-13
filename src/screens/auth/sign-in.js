@@ -3,6 +3,7 @@ import { shape, func } from 'prop-types';
 import {
   StyleSheet,
   KeyboardAvoidingView,
+  ScrollView,
   TouchableNativeFeedback,
   View,
   Text,
@@ -13,7 +14,8 @@ import { login } from '../../server';
 
 const styles = StyleSheet.create({
   view: {
-    flex: 1,
+    paddingTop: 80,
+    paddingBottom: 20,
     justifyContent: 'center',
     alignItems: 'center',
   },
@@ -81,37 +83,39 @@ export default class SignIn extends React.Component {
     const { navigation } = this.props;
     const { email, pwd } = this.state;
     return (
-      <KeyboardAvoidingView style={styles.view}>
-        <Icon name="user" size={100} color="#3F87F5" />
-        <TouchableNativeFeedback onPress={() => alert('Log in with Telegram')}>
-          <View style={styles.telegramButton}>
-            <Text style={styles.buttonText}>Log in with Telegram</Text>
-          </View>
-        </TouchableNativeFeedback>
-        <Text style={styles.credentialsHint}>Or enter your login credentials to get access:</Text>
-        <TextInput
-          style={styles.input}
-          value={email}
-          onChangeText={text => this.setState({ email: text })}
-          placeholder="Email address"
-          keyboardType="email-address"
-        />
-        <TextInput
-          style={styles.input}
-          value={pwd}
-          onChangeText={text => this.setState({ pwd: text })}
-          placeholder="Password"
-          secureTextEntry
-        />
-        <TouchableNativeFeedback onPress={() => navigation.navigate('ForgotPassword')}>
-          <Text style={styles.forgotPassword}>Forgot password?</Text>
-        </TouchableNativeFeedback>
-        <TouchableNativeFeedback onPress={this.handleLogin}>
-          <View style={styles.loginButton}>
-            <Text style={styles.buttonText}>Log in</Text>
-          </View>
-        </TouchableNativeFeedback>
-        <Text style={styles.signUp} onPress={() => navigation.navigate('SignUp')}>Do not have an account? Sign up</Text>
+      <KeyboardAvoidingView>
+        <ScrollView contentContainerStyle={styles.view}>
+          <Icon name="user" size={100} color="#3F87F5" />
+          <TouchableNativeFeedback onPress={() => alert('Log in with Telegram')}>
+            <View style={styles.telegramButton}>
+              <Text style={styles.buttonText}>Log in with Telegram</Text>
+            </View>
+          </TouchableNativeFeedback>
+          <Text style={styles.credentialsHint}>Or enter your login credentials to get access:</Text>
+          <TextInput
+            style={styles.input}
+            value={email}
+            onChangeText={text => this.setState({ email: text })}
+            placeholder="Email address"
+            keyboardType="email-address"
+          />
+          <TextInput
+            style={styles.input}
+            value={pwd}
+            onChangeText={text => this.setState({ pwd: text })}
+            placeholder="Password"
+            secureTextEntry
+          />
+          <TouchableNativeFeedback onPress={() => navigation.navigate('ForgotPassword')}>
+            <Text style={styles.forgotPassword}>Forgot password?</Text>
+          </TouchableNativeFeedback>
+          <TouchableNativeFeedback onPress={this.handleLogin}>
+            <View style={styles.loginButton}>
+              <Text style={styles.buttonText}>Log in</Text>
+            </View>
+          </TouchableNativeFeedback>
+          <Text style={styles.signUp} onPress={() => navigation.navigate('SignUp')}>Do not have an account? Sign up</Text>
+        </ScrollView>
       </KeyboardAvoidingView>
     );
   }
